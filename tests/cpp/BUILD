@@ -95,6 +95,22 @@ cc_test(
     timeout="long"
 )
 
+# cc_test(
+#     name = "test_module_fallback",
+#     srcs = ["test_module_fallback.cpp"],
+#     data = [
+#         "//tests/modules:jit_models",
+#     ],
+#     deps = [
+#         "//cpp:trtorch",
+#         "//tests/util",
+#         "@googletest//:gtest_main",
+#     ] + select({
+#         ":use_pre_cxx11_abi": ["@libtorch_pre_cxx11_abi//:libtorch"],
+#         "//conditions:default": ["@libtorch//:libtorch"],
+#     })
+# )
+
 cc_test(
     name = "test_module_fallback",
     srcs = ["test_module_fallback.cpp"],
@@ -102,13 +118,8 @@ cc_test(
         "//tests/modules:jit_models",
     ],
     deps = [
-        "//cpp:trtorch",
-        "//tests/util",
-        "@googletest//:gtest_main",
-    ] + select({
-        ":use_pre_cxx11_abi": ["@libtorch_pre_cxx11_abi//:libtorch"],
-        "//conditions:default": ["@libtorch//:libtorch"],
-    })
+        ":cpp_api_test",
+    ],
 )
 
 cc_test(
@@ -137,7 +148,7 @@ cc_library(
     name = "cpp_api_test",
     hdrs = ["cpp_api_test.h"],
     deps = [
-        "//cpp:trtorch",
+        "//:trtorch_lib",
         "//tests/util",
         "@googletest//:gtest_main",
     ] + select({

@@ -7,6 +7,13 @@ config_setting(
     ],
 )
 
+cc_import(
+    name = "trtorch_lib",
+    hdrs = glob(["bazel-trtorch/include/**/*.h"]),
+    shared_library = "bazel-bin/cpp/lib/libtrtorch.so",
+    visibility = ["//visibility:public"],
+)
+
 pkg_tar(
     name = "include_core",
     package_dir = "include/trtorch",

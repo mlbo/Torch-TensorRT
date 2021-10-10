@@ -1,3 +1,15 @@
+# config_setting(
+#     name = "rebuilding",
+#     flag_values = {
+#         "rebuilding": "use_pre_built_trtorch",
+#     },
+# )
+#
+# cc_library(
+#     name = "trtorch",
+#     srcs = ["/home/dperi/Downloads/TRTorch/bazel-bin/cpp/lib/libtrtorch.so"],
+# )
+
 test_suite(
     name = "tests",
     tests = [

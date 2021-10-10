@@ -20,9 +20,8 @@ cc_library(
         "util.h",
     ],
     deps = [
-        "//core/conversion",
+        "//:trtorch_lib",
         "//core/util:prelude",
-        "//cpp:trtorch",
         "@tensorrt//:nvinfer",
     ] + select({
         ":use_pre_cxx11_abi": [
@@ -35,3 +34,7 @@ cc_library(
         ],
     }),
 )
+
+# "//core/conversion",
+
+# "//cpp:trtorch",

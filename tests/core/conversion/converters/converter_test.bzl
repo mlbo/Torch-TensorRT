@@ -5,7 +5,7 @@ def converter_test(name, visibility = None):
         visibility = visibility,
         deps = [
             "//tests/util",
-            "//core",
+            "//:trtorch",
             "@googletest//:gtest_main",
         ] + select({
             ":use_pre_cxx11_abi": ["@libtorch_pre_cxx11_abi//:libtorch"],
@@ -13,3 +13,8 @@ def converter_test(name, visibility = None):
         }),
         timeout = "moderate",
     )
+
+# select({
+#     ":rebuilding": ["@trtorch//:trtorch"],
+#     "//conditions:default": ["//core"],
+# })+

@@ -1,5 +1,10 @@
 load("//tests/core/conversion/converters:converter_test.bzl", "converter_test")
 
+cc_library(
+    name = "trtorch",
+    srcs = ["bazel-bin/cpp/lib/libtrtorch.so"],
+)
+
 config_setting(
     name = "use_pre_cxx11_abi",
     values = {

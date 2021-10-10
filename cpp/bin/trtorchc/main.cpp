@@ -639,12 +639,15 @@ int main(int argc, char** argv) {
       for (auto i : ranges) {
         auto in = at::randn(i.opt_shape, {at::kCUDA});
         in = in.to(to_torch_dtype(i.dtype));
+        std::cout << "=====INPUT DTYPE : " << i.dtype << std::endl;
         jit_inputs_ivalues.push_back(in.clone());
         trt_inputs_ivalues.push_back(in.clone());
       }
 
       mod.to({at::kCUDA});
+      std::cout << "=====IN HERE : "  << std::endl;
       torch::jit::IValue jit_results_ivalues = mod.forward(jit_inputs_ivalues);
+      std::cout << "=====IN HERE 2" << std::endl;
       std::vector<at::Tensor> jit_results;
       if (jit_results_ivalues.isTensor()) {
         jit_results.push_back(jit_results_ivalues.toTensor());
